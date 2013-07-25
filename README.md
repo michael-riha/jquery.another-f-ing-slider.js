@@ -11,10 +11,10 @@ Just link jquery.another-f-ing-slider.js on your html document and use HTML stru
 
 ```html
 <div class="slide-container">
-	<div class="slide" id="slide1">
+	<div id="slide1">
 		<p>Dies ist Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.</p>
 	</div>
-    <div class="slide" id="slide2">
+    <div id="slide2">
 		<p>Dies ist Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.</p>
 	</div>
 	<div class="slide" id="slide3">
@@ -28,8 +28,8 @@ Just link jquery.another-f-ing-slider.js on your html document and use HTML stru
 	<li data-slide-id="slide2">Slide3</li>
 </ul>
 
-<button class="afs-prev">Previous</button>
-<button class="afs-next">Next</button>
+<button id="afs-prev">Previous</button>
+<button id="afs-next">Next</button>
 ```
 
 Javascript:
