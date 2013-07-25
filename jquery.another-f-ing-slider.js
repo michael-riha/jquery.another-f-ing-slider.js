@@ -107,7 +107,7 @@
 		 * Set the position of each slide so they are next to each other
 		 */
         var positionSlides = function() {
-            $element.find('.slide').each(function(i) {
+            $element.children().each(function(i) {
             	$(this).css({
             		'left': (plugin.settings.width * i) + 'px'
             	});
