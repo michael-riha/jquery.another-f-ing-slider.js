@@ -50,7 +50,7 @@ Default settings:
     nextID:         'afs-next',         //the id of the next button
     prevID:         'afs-prev',         //the if of the previous button
     autoRotate:     true,               //decide if the fucking slider should slide automatically
-    rotateTime:     10000,              //the delay between automatic sliding
+    rotateTime:     10000,              //the delay between automatic sliding (in ms)
     activeClass:    'active'            //the class that the active controls element becomes
 }
 ```
