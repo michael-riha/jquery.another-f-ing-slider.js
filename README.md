@@ -14,26 +14,22 @@ Just link jquery.another-f-ing-slider.js on your html document and use HTML stru
 	<div class="slide" id="slide1">
 		<p>Dies ist Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.</p>
 	</div>
-	<!-- /.slide#slide1 -->
-    
     <div class="slide" id="slide2">
 		<p>Dies ist Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.</p>
 	</div>
-	<!-- /.slide#slide2 -->
-    
-    <div class="slide" id="slide3">
+	<div class="slide" id="slide3">
 		<p>Dies ist Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.</p>
 	</div>
-	<!-- /.slide#slide3 -->
 </div>
-<!-- /.slide-container -->
-
+	
 <ul id="afs-controls">
 	<li data-slide-id="slide1">Slide1</li>
+	<li data-slide-id="slide1">Slide2</li>
 	<li data-slide-id="slide2">Slide3</li>
-	<li data-slide-id="slide3">Slide3</li>
 </ul>
-<!-- /.controls -->
+
+<button class="afs-prev">Previous</button>
+<button class="afs-next">Next</button>
 ```
 
 Javascript:
