@@ -121,7 +121,7 @@
         	var $el = $(this);
         	
         	//get the slide from the elements data-slide-id attribute
-        	var $slide = $('#' + $el.data('slideId'));
+        	var $slide = $('#' + $el.data('slide-id'));
         	
         	//get the index of the slide
         	var index = $element.children().index($slide);
