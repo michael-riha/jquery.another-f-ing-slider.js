@@ -93,7 +93,7 @@
 				'position': 'relative'
 			});
 			
-            $element.find('.slide').css({
+            $element.children().css({
 				'position': 'absolute',
 				'width': plugin.settings.width + 'px'
 			});
