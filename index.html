@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jquery.another-F*ing-slider.js - Another minimal costumizable jquery slider</title>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<meta property="og:image" content="http://beyondthestatic.github.io/another-f-ing-slider.js/img/fork-me-github.jpg"/>
+	<meta property="og:title" content="another-F*ing-slider.js - Another minimal costumizable jquery slider."/>
+	<meta property="og:description" content="another-F*ing-slider.js is easy to setup and configure. Try it in your project." />
+	<meta property="og:url" content="http://beyondthestatic.github.io/another-f-ing-slider.js/" />
+	<meta property="og:type" content="website" />
+	
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/css3-github-ribbon.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style type="text/css">
+    	/*Example #1*/
+	.ar_wrapper {
+		margin: 0;
+
+	}
+	.ar_overflow_wrapper { width: 300px;}
+	#autoRotate { height: 300px; }
+	#autoRotate div img { 
+		    border-top-left-radius: 10px;
+		    border-top-right-radius: 10px;
+	}
+        .ar-control { 
+		width: 100%;
+		height: 24px;
+		margin: 0;
+		text-align: center;
+	}
+	.ar-control li {
+		cursor: pointer;
+		display: inline-block;
+		width: 32%;
+		color: #688260;
+		background-color: #FFFFFF;
+		border: 2px solid #F0F0F0;
+	}
+	.ar-control li.active{
+		border: 2px solid #688260;
+	}
+	.ar-control li:first-child{ 
+		border-bottom-left-radius: 10px; 
+	}
+	.ar-control li:last-child{ 
+		border-bottom-right-radius: 10px; 
+	}
+	.sc {
+	    cursor: pointer;
+	    position: relative;
+	    padding: 150px 5px;
+	}	
+	.prev {
+	    float: left;
+	}
+	.next {
+	    float: right;
+	}
+	
+	/* Example #2 */
+	.pictureandtext_wrapper .controls ul li {
+		width: 40px;
+		height: 40px;
+		display: inline-block;
+		margin: 0 5px;
+		cursor: pointer;
+	}
+	.ctrl1 {
+		background: url('img/ex2/button1.png') no-repeat;
+	}
+	.c1txt { color: #1F9EBF; }
+	.ctrl2{
+		background: url('img/ex2/button2.png') no-repeat;
+	}
+	.c2txt { color: #D9177B; }
+	.ctrl3 {
+		background: url('img/ex2/button3.png') no-repeat;
+	}			
+	.c3txt { color: #86B72E; }
+	.ctrl4 {
+		background: url('img/ex2/button4.png') no-repeat;
+	}
+	.c4txt { color: #6F6C6B }
+		
+	.pictureandtext_wrapper .controls {
+		text-align: right;
+		margin-top: 330px;
+		position: relative;
+		z-index: 2;
+	}
+	.pictureandtext_wrapper {
+		min-height: 489px;
+		padding-right: 12px;
+	}
+	#pictureandtext .slide {
+		z-index: 1;
+	}
+	#pictureandtext .slide .img {
+		text-align: center;
+		float: left;
+		width: 50%;
+	}
+				
+	#pictureandtext .slide h2 {
+		margin: 12px 0 17px;
+	}
+    </style>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+    	$(document).ready(function(){
+            var imagepath = "img/background/";
+            var images = ["background1.jpg", "background2.jpg", "background3.jpg", "background4.jpg"];
+            var src = imagepath + images[parseInt(Math.random()*images.length)];
+           	$('#bg').attr("src", src);
+            
+            // replace version number with the latest version
+			var latest_version = 'v0.3';
+
+			$(".relace-version").each(function() {
+				var el = $(this);
+				if(this.tagName == 'A') {
+					el.attr("href", el.attr("href").replace('v1.0', latest_version));
+				} else {
+					el.text(el.text().replace('v1.0', latest_version));
+				}
+			});
+			
+			//shrink the code examples
+			$('pre').each(function() {
+				var el = $(this);
+				if(el.height() > 320) {
+					/*el.parent().append('<a class="show-more" href="javascript:void(0);">Show Everything</a>');
+					
+					var height = el.height();
+					el.siblings('.show-more').click(function() {
+						el.animate({
+							'height': height
+						}, 200);
+						$(this).remove();
+					});*/
+					
+					el.css({
+						'height': '320px',
+						'overflow-y': 'scroll'
+					});
+				}
+			});
+        });
+    </script>
+</head>
+
+<body>
+<img id="bg" alt="background image" src="">
+
+<a href="https://github.com/beyondthestatic/jquery.another-f-ing-slider.js" class="github-ribbon">Fork me on GitHub</a>
+
+<div class="container-top"></div>
+<div class="container-narrow">
+
+    <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+            <li class="active"><a href="#">About</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="https://github.com/beyondthestatic/jquery.another-f-ing-slider.js/wiki">Docs</a></li>
+            <li><a href="https://github.com/beyondthestatic/jquery.another-f-ing-slider.js/issues">Issues</a></li>
+            <li><a href="https://github.com/beyondthestatic/jquery.another-f-ing-slider.js">Source on GitHub</a></li>
+        </ul>
+        <a href="http://www.beyondthestatic.com" target="_blank"><img src="img/logo.png" alt="beyond the static" /></a>
+    </div>
+
+    <hr>
+
+    <div class="jumbotron">
+        <h1>Another-F*ing-Slider.js</h1>
+        <p class="lead">Another minimal costumizable jquery slider.</p>
+        <p><a class="btn btn-large btn-download relace-version" href="https://raw.github.com/beyondthestatic/jquery.another-f-ing-slider.js/master/jquery.another-f-ing-slider.js">
+                Download Another-F*ing-slider.js <small class="relace-version">v1.0</small></a>
+        </p>
+        <p>
+            <a href="https://github.com/beyondthestatic/jquery.another-f-ing-slider.js">View Source on GitHub &rsaquo;</a><br>
+            <a href="https://github.com/beyondthestatic/jquery.another-f-ing-slider.js/wiki">Read documentation &rsaquo;</a><br>
+            <a href="#examples">View Examples &rsaquo;</a>
+        </p>
+    </div>
+
+    <hr>
+
+    <div class="row-fluid marketing">
+        <div class="span6">
+            <h4>It's Easy and Smart</h4>
+            <p>Another-F*ing-slider.js is easy to setup and configure. Try it in your project.</p>
+            
+            <h4>Browser Support</h4>
+            <p>This plugin was was tested and works on Chrome, Safari, Firefox and IE9 & above.</p>
+        </div>
+
+        <div class="span6">
+            <h4>Foolproof Implementation</h4>
+			<p>
+<pre>$('#slide-container').anotherFuckingSlider();</pre>
+			</p>
+			
+            <h4>Easy to adjust</h4>
+			<p>
+<pre>$('#slide-container').anotherFuckingSlider({  
+    speed:          500,
+    controlsID:     'afs-controls',
+    nextID:         'afs-next',
+    prevID:         'afs-prev',
+    autoRotate:     true,
+    rotateTime:     10000,
+    activeClass:    'active'
+});</pre>
+			</p>
+			
+            <h5><a href="https://github.com/beyondthestatic/jquery.another-f-ing-slider.js">Get Started  &raquo;</a></h5>
+        </div>
+    </div>
+    
+    <hr>
+
+    <div class="row-fluid marketing-top">
+        <div class="span12">
+            <h3><a name="examples">Examples</a> <small><a href="#autorotate">Auto-rotating Slideshow</a> & <a href="#pat">Picture and Text combo</a></small></h3>
+            <p>Some examples to show you how <a href="https://github.com/beyondthestatic/jquery.another-f-ing-slider.js">Another-F*ing-slider.js</a> can be used.</p>
+        </div>
+    </div>
+    
+    <hr class="small">
+    
+    <div class="row-fluid">
+    	<div class="span12">
+    		<h4><a name="autorotate">Auto Rotating</a></h4>
+    	</div>
+    </div>
+    
+    <div class="row-fluid">
+	<div class="span6">
+            <h5>Live Demo</h5>
+            <p>Wait for the automatic slideshow to start or click on the side or bottom controls to rotate through the pictures.</p>
+        	<div class="ar_wrapper">
+		
+			<div id="afs-prev" class="prev sc">
+				<img src="img/ex1/prev_slide.png" alt="Previous Slide" />
+			</div>
+			<div id="afs-next" class="next sc">
+				<img src="img/ex1/next_slide.png" alt="Next Slide" />
+			</div>	
+
+			<div class="ar_overflow_wrapper">
+				<div id="autoRotate">
+					<div id="slide1"><img class="slideimg" alt="bild1" src="img/ex1/noImg1.jpg" /></div>
+					<div id="slide2"><img class="slideimg" alt="bild2" src="img/ex1/noImg2.gif" /></div>
+					<div id="slide3"><img class="slideimg" alt="bild3" src="img/ex1/NoImg3.gif" /></div>
+				</div>
+				<ul id="afs-controls" class="ar-control">
+	<li data-slide-id="slide1">Image 1</li><li data-slide-id="slide2">Image 2</li><li data-slide-id="slide3">Image 3</li></ul>
+			</div>
+
+		</div>
+        </div>
+        
+        <div class="span6">
+        	<h5>JavaScript</h5>
+			<p>
+<pre>$('#autoRotate').anotherFuckingSlider({  
+    speed:          1000,
+    rotateTime:     5000
+});</pre>
+			</p>
+	<h5>CSS</h5>
+			<p>
+<pre>
+.ar_overflow_wrapper { width: 300px;}
+#autoRotate { height: 300px; }
+.ar-control { 
+    width: 100%;
+    height: 24px;
+    margin: 0;
+    text-align: center;
+}
+.ar-control li {
+    cursor: pointer;
+    display: inline-block;
+    width: 32%;
+    color: #688260;
+    background-color: #FFFFFF;
+    border: 2px solid #F0F0F0;
+}
+.ar-control li.active{
+    border: 2px solid #688260;
+}
+.sc {
+    cursor: pointer;
+    position: relative;
+    padding: 150px 5px;
+}	
+.prev {
+    float: left;
+}
+.next {
+    float: right;
+}
+.ar-control li:first-child{ 
+    border-bottom-left-radius: 10px; 
+}
+.ar-control li:last-child{ 
+    border-bottom-right-radius: 10px; 
+}
+#autoRotate div img { 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}</pre>
+			</p>
+        </div>
+    </div>
+    
+    <div class="row-fluid">
+        <div class="span12">
+        	<h5>HTML</h5>
+			<p>
+<pre>&lt;div class=&quot;ar_wrapper&quot;&gt;
+ &lt;div id=&quot;afs-prev&quot; class=&quot;prev sc&quot;&gt;
+  &lt;img src=&quot;img/ex1/prev_slide.png&quot;/&gt;
+ &lt;/div&gt;
+ &lt;div id=&quot;afs-next&quot; class=&quot;next sc&quot;&gt;
+  &lt;img src=&quot;img/ex1/next_slide.png&quot;/&gt;
+ &lt;/div&gt;	
+ &lt;div class=&quot;ar_overflow_wrapper&quot;&gt;
+  &lt;div id=&quot;autoRotate&quot;&gt;
+   &lt;div id=&quot;slide1&quot;&gt;&lt;img class=&quot;slideimg&quot; alt=&quot;bild1&quot; src=&quot;img/ex1/noImg1.jpg&quot; /&gt;
+   &lt;/div&gt;
+   &lt;div id=&quot;slide2&quot;&gt;&lt;img class=&quot;slideimg&quot; alt=&quot;bild2&quot; src=&quot;img/ex1/noImg2.gif&quot; /&gt;
+   &lt;/div&gt;
+   &lt;div id=&quot;slide3&quot;&gt;&lt;img class=&quot;slideimg&quot; alt=&quot;bild3&quot; src=&quot;img/ex1/NoImg3.gif&quot; /&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;ul id=&quot;afs-controls&quot; class=&quot;ar-control&quot;&gt;
+   &lt;li data-slide-id=&quot;slide1&quot;&gt;Image 1&lt;/li&gt;
+   &lt;li data-slide-id=&quot;slide2&quot;&gt;Image 2&lt;/li&gt;
+   &lt;li data-slide-id=&quot;slide3&quot;&gt;Image 3&lt;/li&gt;
+  &lt;/ul&gt;
+ &lt;/div&gt;
+&lt;/div&gt;</pre>
+			</p>
+        </div>
+    </div>
+    
+    <hr class="small">
+    
+    <div class="row-fluid">
+    	<div class="span12">
+    		<h4><a name="pat">Picture and Text combo</a></h4>
+    	</div>
+    </div>
+    
+    <div class="row-fluid">
+        <div class="span7">
+            <h5>Live Demo</h5>
+            <p>Click on one of the four Icons to transition to another slide</p>
+		<div class="pictureandtext_wrapper">
+			<div id="pictureandtext">
+				<div class="slide" id="ctrl1">
+					<div class="img">
+						<img src="img/ex2/tv-slide.png" />
+					</div>
+					<h2 class="c1txt">Blue Title</h2>
+					<p>Dies ist Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.</p>
+					<p>Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Hand-gloves, um Schriften zu testen. Manchmal Sätze.</p>
+				</div>
+				<div class="slide" id="ctrl2">
+					<div class="img">
+						<img src="img/ex2/tv-slide.png" />
+					</div>
+					<h2 class="c2txt">Pink Title</h2>
+					<p>Dies ist Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.</p>
+					<p>Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Hand-gloves, um Schriften zu testen. Manchmal Sätze.</p>
+				</div>
+				<div class="slide" id="ctrl3">
+					<div class="img">
+						<img src="img/ex2/tv-slide.png" />
+					</div>
+					<h2 class="c3txt">Green Title</h2>
+					<p>Dies ist Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.</p>
+					<p>Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Hand-gloves, um Schriften zu testen. Manchmal Sätze.</p>
+				</div>
+				<div class="slide" id="ctrl4">
+					<div class="img">
+						<img src="img/ex2/tv-slide.png" />
+					</div>
+					<h2 class="c4txt">Grey Title</h2>
+					<p>Dies ist Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.</p>
+					<p>Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Hand-gloves, um Schriften zu testen. Manchmal Sätze.</p>
+				</div>
+			</div>
+			
+			<div class="controls">
+				<ul id="pat-controls">
+					<li class="ctrl1" data-slide-id="ctrl1"></li>
+					<li class="ctrl2" data-slide-id="ctrl2"></li>
+					<li class="ctrl3" data-slide-id="ctrl3"></li>
+					<li class="ctrl4" data-slide-id="ctrl4"></li>
+				</ul>
+			</div>
+		</div>
+        </div>
+<div class="row-fluid">
+        <div class="span5">
+        	<h5>JavaScript</h5>
+			<p>
+<pre>$('#pictureandtext').anotherFuckingSlider({
+  autoRotate:  false,
+
+  //make the first example lose
+  //control over the second one
+  controlsID:  'pat-controls', 
+  nextID:      'pat-next',	
+  prevID:      'pat-prev'
+});</pre>
+			</p>
+        </div>
+    </div>
+</div>
+    <div class="row-fluid marketing-bottom">
+        <div class="span6">
+        	<h5>HTML</h5>
+			<p>
+<pre>&lt;div class=&quot;pictureandtext_wrapper&quot;&gt;
+ &lt;div id=&quot;pictureandtext&quot;&gt;
+  &lt;div class=&quot;slide&quot; id=&quot;ctrl1&quot;&gt;
+   &lt;div class=&quot;img&quot;&gt;
+    &lt;img src=&quot;img/ex2/tv-slide.png&quot; /&gt;
+   &lt;/div&gt;
+   &lt;h2 class=&quot;c1txt&quot;&gt;Blue Title&lt;/h2&gt;
+   &lt;p&gt;Dies ist Typoblindtext. An ihm 
+    kann man sehen, ob alle 
+    Buchstaben da sind und 
+    wie sie aussehen.&lt;/p&gt;
+   &lt;p&gt;Manchmal benutzt man Worte wie 
+    Hamburgefonts, Rafgenduks oder 
+    Hand-gloves, um Schriften zu t
+    esten. Manchmal S&Atilde;&curren;tze.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;slide&quot; id=&quot;ctrl2&quot;&gt;
+   &lt;div class=&quot;img&quot;&gt;
+    &lt;img src=&quot;img/ex2/tv-slide.png&quot; /&gt;
+   &lt;/div&gt;
+   &lt;h2 class=&quot;c2txt&quot;&gt;Pink Title&lt;/h2&gt;
+   &lt;p&gt;Dies ist Typoblindtext. An ihm 
+    kann man sehen, ob alle 
+    Buchstaben da sind und 
+    wie sie aussehen.&lt;/p&gt;
+   &lt;p&gt;Manchmal benutzt man Worte wie 
+    Hamburgefonts, Rafgenduks oder 
+    Hand-gloves, um Schriften zu t
+    esten. Manchmal S&Atilde;&curren;tze.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;slide&quot; id=&quot;ctrl3&quot;&gt;
+   &lt;div class=&quot;img&quot;&gt;
+    &lt;img src=&quot;img/ex2/tv-slide.png&quot; /&gt;
+   &lt;/div&gt;
+   &lt;h2 class=&quot;c3txt&quot;&gt;Green Title&lt;/h2&gt;
+   &lt;p&gt;Dies ist Typoblindtext. An ihm 
+    kann man sehen, ob alle 
+    Buchstaben da sind und 
+    wie sie aussehen.&lt;/p&gt;
+   &lt;p&gt;Manchmal benutzt man Worte wie 
+    Hamburgefonts, Rafgenduks oder 
+    Hand-gloves, um Schriften zu t
+    esten. Manchmal S&Atilde;&curren;tze.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;slide&quot; id=&quot;ctrl4&quot;&gt;
+   &lt;div class=&quot;img&quot;&gt;
+    &lt;img src=&quot;img/ex2/RickRoll.png&quot; /&gt;
+   &lt;/div&gt;
+   &lt;h2 class=&quot;c4txt&quot;&gt;Grey Title&lt;/h2&gt;
+   &lt;p&gt;Dies ist Typoblindtext. An ihm 
+    kann man sehen, ob alle 
+    Buchstaben da sind und 
+    wie sie aussehen.&lt;/p&gt;
+   &lt;p&gt;Manchmal benutzt man Worte wie 
+    Hamburgefonts, Rafgenduks oder 
+    Hand-gloves, um Schriften zu t
+    esten. Manchmal S&Atilde;&curren;tze.&lt;/p&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+	
+ &lt;div class=&quot;controls&quot;&gt;
+  &lt;ul id=&quot;pat-controls&quot;&gt;
+   &lt;li class=&quot;ctrl1&quot; data-slide-id=
+    &quot;ctrl1&quot;&gt;&lt;/li&gt;
+   &lt;li class=&quot;ctrl2&quot; data-slide-id=
+    &quot;ctrl2&quot;&gt;&lt;/li&gt;
+   &lt;li class=&quot;ctrl3&quot; data-slide-id=
+    &quot;ctrl3&quot;&gt;&lt;/li&gt;
+   &lt;li class=&quot;ctrl4&quot; data-slide-id=
+    &quot;ctrl4&quot;&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+ &lt;/div&gt;
+&lt;/div&gt;</pre>
+			</p>
+        </div>
+        
+        <div class="span6">
+        	<h5>CSS</h5>
+			<p>
+<pre>.pictureandtext_wrapper .controls ul li {
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	margin: 0 5px;
+	cursor: pointer;
+}
+
+.c1txt { color: #1F9EBF; }
+.ctrl1 {
+	background: url('img/ex2/button1.png') no-repeat;
+}
+
+.c2txt { color: #D9177B; }
+.ctrl2{
+	background: url('img/ex2/button2.png') no-repeat;
+}
+			
+.c3txt { color: #86B72E; }
+.ctrl3 {
+	background: url('img/ex2/button3.png') no-repeat;
+}
+
+.c4txt { color: #6F6C6B }
+.ctrl4 {
+	background: url('img/ex2/button4.png') no-repeat;
+}
+	
+.pictureandtext_wrapper .controls {
+	text-align: right;
+	margin-top: 330px;
+	position: relative;
+	z-index: 2;
+}
+.pictureandtext_wrapper {
+	min-height: 489px;
+	padding-right: 12px;
+}
+#pictureandtext .slide {
+	z-index: 1;
+}
+#pictureandtext .slide .img {
+	text-align: center;
+	float: left;
+	width: 50%;
+}
+			
+#pictureandtext .slide h2 {
+	margin: 12px 0 17px;
+}</pre>
+			</p>
+        </div>
+    </div>
+    
+    <script src="js/jquery.another-f-ing-slider.js"></script>
+    <script>
+	/* #1 Example */
+	$('#autoRotate').anotherFuckingSlider({  
+	    speed:          1000,
+	    rotateTime:     5000
+	});
+	/* #2 Example */
+	$('#pictureandtext').anotherFuckingSlider({
+	    autoRotate:     false,
+	    controlsID:     'pat-controls', 
+	    nextID:         'pat-next',		//so the first example wont control the second example
+    	    prevID:         'pat-prev'		//so the first example wont control the second example
+	});	
+    </script>
+
+    <hr style="margin-bottom: 30px;">
+
+    <div class="footer clearfix">
+        <p class="pull-right">
+            By <a href="http://www.beyondthestatic.com/" title="Beyond The Static">Beyond The Static</a> in Vienna, Austria.
+        </p>
+    </div>
+</div>
+<div class="container-bottom"></div>
+
+</body>
+</html>
