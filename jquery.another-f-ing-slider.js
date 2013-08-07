@@ -11,7 +11,8 @@
             prevID: 'afs-prev',
             autoRotate: true,
             rotateTime: 10000,
-            activeClass: 'active'
+            activeClass: 'active',
+            pauseOnHover: true
         }
 
         var plugin = this;
@@ -133,18 +134,20 @@
         	//register an interval to rotate the slides
 			plugin.settings.interval = window.setInterval(plugin.nextSlide, plugin.settings.rotateTime);
 			
-			//if the user hovers the container of the slides ...
-			$element.mouseenter(function() {
-				//... clear the interval so the slides no longer rotate
-				plugin.settings.interval = window.clearInterval(plugin.settings.interval);
-				
-				//when the mouse leaves the container ...
-				$(this).mouseleave(function() {
-					//... register the interval again, but only if there is no interval registered at the moment
-					if(typeof plugin.settings.interval == 'undefined') //need this check because of multiple mouseleave events
-						plugin.settings.interval = window.setInterval(plugin.nextSlide, plugin.settings.rotateTime);
+			if(plugin.settings.pauseOnHover) {
+				//if the user hovers the container of the slides ...
+				$element.mouseenter(function() {
+					//... clear the interval so the slides no longer rotate
+					plugin.settings.interval = window.clearInterval(plugin.settings.interval);
+					
+					//when the mouse leaves the container ...
+					$(this).mouseleave(function() {
+						//... register the interval again, but only if there is no interval registered at the moment
+						if(typeof plugin.settings.interval == 'undefined') //need this check because of multiple mouseleave events
+							plugin.settings.interval = window.setInterval(plugin.nextSlide, plugin.settings.rotateTime);
+					});
 				});
-			});
+			}
         }
 
         plugin.init();
